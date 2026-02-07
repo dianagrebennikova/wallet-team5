@@ -1,10 +1,4 @@
-// export const AuthForm = () => {
-//     return <>тут будет форма для 'регистрации' и 'входа'</>
-// }
-
-// src/components/AuthForm/AuthForm.jsx
-
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import {
     AuthWrapper,
@@ -25,23 +19,42 @@ export const AuthForm = ({ isSignUp = false }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    // Флаг: была ли попытка отправить форму
+    const [isSubmitted, setIsSubmitted] = useState(false)
     const [error, setError] = useState('')
 
+    // Валидация
+    const isValidEmail = email.trim() !== '' && /\S+@\S+\.\S+/.test(email)
+    const isValidPassword = password.trim().length >= 6
+    const isValidName =
+        !isSignUp || (name.trim() !== '' && name.trim().length >= 2)
+
+    const allValid = isValidEmail && isValidPassword && isValidName
+
+    // Показывать ошибки ТОЛЬКО после отправки
+    const showEmailError = isSubmitted && !isValidEmail
+    const showPasswordError = isSubmitted && !isValidPassword
+    const showNameError = isSubmitted && isSignUp && !isValidName
+
+    // Устанавливаем текст ошибки
     const handleSubmit = (e) => {
         e.preventDefault()
-        setError('')
+        setIsSubmitted(true)
 
-        if (!email || !password) {
-            setError('Заполните все поля')
-            return
+        // Устанавливаем ошибку напрямую
+        if (!isValidEmail) {
+            setError('Введите корректный email')
+        } else if (!isValidPassword) {
+            setError('Пароль должен быть не менее 6 символов')
+        } else if (isSignUp && !isValidName) {
+            setError('Имя должно быть не менее 2 символов')
+        } else {
+            setError('')
         }
 
-        if (isSignUp && !name) {
-            setError('Введите имя')
-            return
-        }
+        if (!allValid) return
 
-        // Здесь будет логика входа/регистрации
         console.log('Форма отправлена:', { name, email, password })
     }
 
@@ -60,6 +73,10 @@ export const AuthForm = ({ isSignUp = false }) => {
                                 placeholder="Имя"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
+                                $error={showNameError}
+                                $success={
+                                    !showNameError && name.trim().length > 0
+                                }
                                 autoFocus
                             />
                         </InputWrapper>
@@ -71,6 +88,10 @@ export const AuthForm = ({ isSignUp = false }) => {
                             placeholder="Эл. почта"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            $error={showEmailError}
+                            $success={
+                                !showEmailError && email.trim().length > 0
+                            }
                             autoFocus={!isSignUp}
                         />
                     </InputWrapper>
@@ -81,22 +102,26 @@ export const AuthForm = ({ isSignUp = false }) => {
                             placeholder="Пароль"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            $error={showPasswordError}
+                            $success={
+                                !showPasswordError && password.trim().length > 0
+                            }
                         />
                     </InputWrapper>
 
-                    <Button type="submit">
+                    <Button type="submit" disabled={isSubmitted && !allValid}>
                         {isSignUp ? 'Зарегистрироваться' : 'Войти'}
                     </Button>
                 </Form>
 
                 {isSignUp ? (
                     <LinkTextUp>
-                        Уже есть аккаунт?{' '}
+                        Уже есть аккаунт? <br />
                         <LinkUp href="/sign-in">Войдите здесь</LinkUp>
                     </LinkTextUp>
                 ) : (
                     <LinkText>
-                        Нужно зарегистрироваться?{' '}
+                        Нужно зарегистрироваться? <br />
                         <Link href="/sign-up">Регистрируйтесь здесь</Link>
                     </LinkText>
                 )}

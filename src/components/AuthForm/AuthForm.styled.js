@@ -9,82 +9,124 @@ export const AuthWrapper = styled.div`
     padding: 20px;
     box-sizing: border-box;
 `
-
 export const Modal = styled.div`
-    width: 368px;
+    width: 379px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 50px 60px;
+    gap: 24px;
+    padding: 32px;
     box-sizing: border-box;
     border: 0.7px solid rgba(212, 219, 229, 1);
-    border-radius: 10px;
-    box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
+    border-radius: 30px;
+    box-shadow: 0px 20px 67px -12px rgba(0, 0, 0, 0.13);
     background: #fff;
 `
-
 export const Title = styled.h2`
-    font-size: 20px;
+    height: 29px;
+    color: rgba(0, 0, 0, 1);
+    font-family: Montserrat;
+    font-style: Bold;
+    font-size: 24px;
     font-weight: 700;
-    color: #000;
-    margin-bottom: 20px;
+    line-height: 29px;
+    letter-spacing: 0px;
     text-align: center;
 `
-
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     width: 100%;
     position: relative;
 `
-
 export const InputWrapper = styled.div`
     position: relative;
 `
-
 export const Input = styled.input`
-    width: 100%;
-    height: 40px;
-    padding: 0 10px;
-    border: 0.7px solid #d4dbe5;
-    border-radius: 10px;
+    width: 313px;
+    height: 39px;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(153, 153, 153, 1);
+    border-radius: 6px;
     background: #fff;
     font-size: 14px;
 
+    /* Сброс фокуса */
     &:focus {
-        border-color: #565eef;
         outline: none;
-        box-shadow: 0 0 0 2px rgba(86, 94, 239, 0.2);
+    }
+
+    /* Ошибка */
+    ${({ $error }) =>
+        $error &&
+        `
+    background: #ffebeb;
+    border-color: #ff3333;
+    &::placeholder {
+        color: #ff3333;
+    }
+`}
+
+    /* Успех */
+${({ $success, $error }) =>
+        $success &&
+        !$error &&
+        `
+    background: #f0e6ff;
+    border-color: #565eef;
+    &::placeholder {
+        color: #565eef;
+    }
+`}
+
+    /* Фокус при ошибке или успехе */
+&:focus {
+        ${({ $error }) =>
+            $error &&
+            `border-color: #ff3333; box-shadow: 0 0 0 2px rgba(255, 51, 51, 0.2);`}
+        ${({ $success, $error }) =>
+            $success &&
+            $error &&
+            `border-color: #565eef; box-shadow: 0 0 0 2px rgba(86, 94, 239, 0.2);`}
     }
 
     &::placeholder {
-        color: #94a6be;
+        color: rgba(153, 153, 153, 1);
+        font-family: Montserrat;
+        font-style: Regular;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15px;
+        letter-spacing: 0px;
+        text-align: left;
     }
 `
-
 export const Button = styled.button`
-    width: 100%;
-    height: 40px;
-    margin-top: 10px;
-    background: #565eef;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
+    width: 313px;
+    height: 39px;
+    margin-top: 12px;
+    border-radius: 6px;
+    background: rgba(115, 52, 234, 1);
+    color: rgba(255, 255, 255, 1);
+    font-family: Montserrat;
+    font-style: SemiBold;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+    letter-spacing: 0px;
+    text-align: center;
     cursor: pointer;
 
     &:hover {
-        background: #424ad0;
+        background: rgb(96, 26, 228);
     }
 
     &:active {
-        background: #3a40b5;
+        background: rgb(80, 0, 230);
     }
 `
-
 export const ErrorMessage = styled.p`
     position: absolute;
     top: -22px;
@@ -102,31 +144,41 @@ export const ErrorMessage = styled.p`
     transition: all 0.2s ease;
     pointer-events: none;
 `
-
 export const LinkText = styled.p`
-    font-size: 14px;
-    color: #94a6be;
+    color: rgba(153, 153, 153, 1);
+    font-family: Montserrat;
+    font-style: Regular;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0px;
     text-align: center;
-    margin-top: 20px;
 `
-
 export const Link = styled.a`
-    color: #565eef;
-    text-decoration: none;
+    color: rgba(153, 153, 153, 1);
+    font-family: Montserrat;
+    font-style: Regular;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0px;
+    text-align: center;
     cursor: pointer;
 
     &:hover {
         text-decoration: underline;
     }
 `
-
 export const LinkTextUp = styled.p`
-    font-size: 14px;
-    color: #94a6be;
+    color: rgba(153, 153, 153, 1);
+    font-family: Montserrat;
+    font-style: Regular;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0px;
     text-align: center;
-    margin-top: 20px;
 `
-
 export const LinkUp = styled.a`
     color: #565eef;
     text-decoration: none;
