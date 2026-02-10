@@ -6,8 +6,8 @@ export const Wrapper = styled.header`
     top: 0;
     left: 0;
     width: 100%;
-    height: 72px;
-    padding: 0 48px;
+    height: 64px;
+    padding: 0 120px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -17,13 +17,12 @@ export const Wrapper = styled.header`
 `
 
 export const Logo = styled.div`
-    font-weight: 700;
-    font-size: 18px;
+    cursor: pointer;
 `
 
 export const Nav = styled.nav`
     display: flex;
-    gap: 36px;
+    gap: 48px;
 `
 
 export const StyledLink = styled(NavLink)`
@@ -33,6 +32,7 @@ export const StyledLink = styled(NavLink)`
     position: relative;
 
     &.active {
+        font-weight: 600;
         color: #20bf6b;
         text-decoration: underline;
         text-underline-offset: 4px;
