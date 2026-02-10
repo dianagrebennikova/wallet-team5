@@ -6,8 +6,8 @@ export const Wrapper = styled.header`
     top: 0;
     left: 0;
     width: 100%;
-    height: 64px;
-    padding: 0 120px;
+    height: 72px;
+    padding: 0 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -17,12 +17,13 @@ export const Wrapper = styled.header`
 `
 
 export const Logo = styled.div`
-    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
 `
 
 export const Nav = styled.nav`
     display: flex;
-    gap: 48px;
+    gap: 36px;
 `
 
 export const StyledLink = styled(NavLink)`
@@ -33,10 +34,8 @@ export const StyledLink = styled(NavLink)`
 
     &.active {
         color: #20bf6b;
-        font-weight: 600;
         text-decoration: underline;
         text-underline-offset: 4px;
-        text-decoration-thickness: 1px;
     }
 
     &:hover {
@@ -49,10 +48,8 @@ export const LogoutButton = styled.button`
     border: none;
     font-weight: 600;
     cursor: pointer;
-    outline: none;
 
     &:hover {
         color: #20bf6b;
-        border: none;
     }
 `

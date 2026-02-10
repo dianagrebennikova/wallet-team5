@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FormWrapper = styled.div`
     width: 379px;
-    margin-top: 116px;
+    margin-top: 180px;
     margin-left: 941px;
     padding: 32px;
     border-radius: 30px;

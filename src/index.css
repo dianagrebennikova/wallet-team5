@@ -1,18 +1,7 @@
 :root {
- header&table_analysis
   font-family: 'Montserrat', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-=======
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
- main
-
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -29,19 +18,11 @@ a:hover {
 }
 
 body {
- header&table_analysis
   margin: 0;
   display: flex;
-  padding-top: 64px;
+
   min-width: 320px;
   min-height: 100vh;
-
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
- main
 }
 
 h1 {
@@ -63,14 +44,14 @@ button {
 button:hover {
     border-color: #646cff;
 }
- header&table_analysis
+
 
 
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
- main
+ 
 
 @media (prefers-color-scheme: light) {
     :root {

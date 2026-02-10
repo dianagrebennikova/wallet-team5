@@ -6,14 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
- header&table_analysis
         <GlobalStyle />
         <App />
-
-        <BrowserRouter>
-            <GlobalStyle />
-            <App />
-        </BrowserRouter>
- main
     </StrictMode>
 )
