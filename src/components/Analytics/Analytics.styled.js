@@ -17,6 +17,10 @@ export const AnalyticsTitle = styled.h1`
     line-height: 150%;
     letter-spacing: 0px;
     text-align: left;
+
+    @media screen and (max-width: 1024px) {
+        text-align: center;
+    }
 `
 
 export const ColumnsLayout = styled.div`
@@ -40,12 +44,14 @@ export const CalendarColumn = styled.div`
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 
     @media screen and (max-width: 1024px) {
-        flex-direction: column;
-        align-items: center;
+        margin-bottom: 32px;
+        border-radius: 0;
+        height: 646px;
     }
 `
 
 export const ChartColumn = styled.div`
+    flex-grow: 1;
     background: rgba(255, 255, 255, 1);
     border-radius: 30px;
     box-shadow: 0px 20px 67px -12px rgba(0, 0, 0, 0.13);

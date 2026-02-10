@@ -23,9 +23,9 @@ const getFirstDayOfMonth = (month, year) => {
 const generateMonthDays = (month, year) => {
     const daysInMonth = getDaysInMonth(month, year)
     const firstDay = getFirstDayOfMonth(month, year)
-    
+
     const days = []
-    
+
     // Пустые ячейки для дней предыдущего месяца
     const prevMonthDays = firstDay - 1
     for (let i = 0; i < prevMonthDays; i++) {
@@ -34,7 +34,7 @@ const generateMonthDays = (month, year) => {
             isEmpty: true,
         })
     }
-    
+
     // Дни текущего месяца
     for (let i = 1; i <= daysInMonth; i++) {
         days.push({
@@ -42,28 +42,38 @@ const generateMonthDays = (month, year) => {
             isEmpty: false,
         })
     }
-    
+
     // Пустые ячейки для дней следующего месяца
     const totalDays = days.length
     const remainingCells = (7 - (totalDays % 7)) % 7
-    
+
     for (let i = 0; i < remainingCells; i++) {
         days.push({
             number: '',
             isEmpty: true,
         })
     }
-    
+
     return days
 }
 
 const Calendar = ({ selectedDate = '16.01.2026', onDateSelect }) => {
     const [selectedFullDate, setSelectedFullDate] = useState(selectedDate) // ← ХРАНИМ ПОЛНУЮ ДАТУ
-    
+
     const year = 2026
     const monthNames = [
-        'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь',
+        'Январь',
+        'Февраль',
+        'Март',
+        'Апрель',
+        'Май',
+        'Июнь',
+        'Июль',
+        'Август',
+        'Сентябрь',
+        'Октябрь',
+        'Ноябрь',
+        'Декабрь',
     ]
 
     // Сегодняшняя дата
@@ -88,6 +98,15 @@ const Calendar = ({ selectedDate = '16.01.2026', onDateSelect }) => {
             <S.CalendarHeader>
                 <S.CalendarTitle>Период</S.CalendarTitle>
 
+                <S.CalendarTitleMobile>
+                    <S.Link href="/">
+                        <S.LinkIconMob>➜</S.LinkIconMob>
+                        <S.LinkTitleMob>Анализ расходов</S.LinkTitleMob>
+                    </S.Link>
+
+                    <S.CalendarTitleMob>Выбор периода</S.CalendarTitleMob>
+                </S.CalendarTitleMobile>
+
                 <S.WeekdaysContainer>
                     {['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'].map((day) => (
                         <S.Weekday key={day}>{day}</S.Weekday>
@@ -108,7 +127,8 @@ const Calendar = ({ selectedDate = '16.01.2026', onDateSelect }) => {
                             <S.MonthDaysGrid>
                                 {monthDays.map((day, i) => {
                                     const dayOfWeek = i % 7
-                                    const isWeekend = dayOfWeek === 5 || dayOfWeek === 6
+                                    const isWeekend =
+                                        dayOfWeek === 5 || dayOfWeek === 6
 
                                     const formattedDate = formatDate(
                                         day.number,
@@ -116,8 +136,10 @@ const Calendar = ({ selectedDate = '16.01.2026', onDateSelect }) => {
                                         year
                                     )
 
-                                    const isCurrent = formattedDate === todayString
-                                    const isSelected = formattedDate === selectedFullDate // ← СРАВНИВАЕМ ПОЛНЫЕ ДАТЫ
+                                    const isCurrent =
+                                        formattedDate === todayString
+                                    const isSelected =
+                                        formattedDate === selectedFullDate // ← СРАВНИВАЕМ ПОЛНЫЕ ДАТЫ
 
                                     return (
                                         <S.MonthDay
@@ -130,10 +152,15 @@ const Calendar = ({ selectedDate = '16.01.2026', onDateSelect }) => {
                                             `}
                                             onClick={() =>
                                                 !day.isEmpty &&
-                                                handleDateSelect(day.number, monthIndex)
+                                                handleDateSelect(
+                                                    day.number,
+                                                    monthIndex
+                                                )
                                             }
                                             style={{
-                                                cursor: day.isEmpty ? 'default' : 'pointer',
+                                                cursor: day.isEmpty
+                                                    ? 'default'
+                                                    : 'pointer',
                                             }}
                                         >
                                             {day.number}
@@ -145,6 +172,10 @@ const Calendar = ({ selectedDate = '16.01.2026', onDateSelect }) => {
                     )
                 })}
             </S.CalendarScrollable>
+
+            <S.CalendarFooter>
+                <S.CalendarBtn>Выбрать период</S.CalendarBtn>
+            </S.CalendarFooter>
         </S.CalendarContainer>
     )
 }
