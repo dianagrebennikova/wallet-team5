@@ -8,15 +8,8 @@ const Analytics = () => {
 
             <S.ColumnsLayout>
                 <S.CalendarColumn>
-                    <Calendar
-                        selectedDate="16.01.2026"
-                        onDateSelect={(date) => console.log(date)}
-                    />
+                    <Calendar selectedDate="16.01.2026" onDateSelect={(date) => console.log(date)} />                    
                 </S.CalendarColumn>
-
-                <S.ChartColumn>
-                    <h1>Диаграмма</h1>
-                </S.ChartColumn>
             </S.ColumnsLayout>
         </S.AnalyticsContainer>
     )

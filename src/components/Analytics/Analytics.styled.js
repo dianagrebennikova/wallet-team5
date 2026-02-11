@@ -49,11 +49,3 @@ export const CalendarColumn = styled.div`
         height: 646px;
     }
 `
-
-export const ChartColumn = styled.div`
-    flex-grow: 1;
-    background: rgba(255, 255, 255, 1);
-    border-radius: 30px;
-    box-shadow: 0px 20px 67px -12px rgba(0, 0, 0, 0.13);
-    padding: 32px 32px 44px 32px;
-`
