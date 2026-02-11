@@ -1,53 +1,55 @@
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
-export const Header = styled.header`
-    width: 100%;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    z-index: 1000;
-    @media (max-width: 768px) {
-        padding: 16px;
-        border-bottom: 1px solid #dee2e6;
-    }
-`
-
-export const HeaderBlock = styled.div`
-    padding-right: calc(50% - 600px);
-    padding-left: calc(50% - 600px);
-
-    height: 64px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+export const Wrapper = styled.header`
+    position: fixed;
     top: 0;
     left: 0;
-
-    @media (max-width: 768px) {
-        font-size: 18px;
-        justify-content: center;
-    }
+    width: 100%;
+    height: 64px;
+    padding: 0 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    z-index: 1000;
 `
-export const LogoutButton = styled.button`
-    background: transparent;
-    border: 1px solid #dc3545;
-    color: #dc3545;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 6px;
+
+export const Logo = styled.div`
     cursor: pointer;
-    transition: all 0.2s;
+`
+
+export const Nav = styled.nav`
+    display: flex;
+    gap: 48px;
+`
+
+export const StyledLink = styled(NavLink)`
+    text-decoration: none;
+    color: #222;
+    font-weight: 400;
+    position: relative;
+
+    &.active {
+        font-weight: 600;
+        color: #20bf6b;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
 
     &:hover {
-        background-color: #dc3545;
-        color: white;
+        color: #20bf6b;
     }
+`
 
-    @media (max-width: 768px) {
-        font-size: 15px;
-        padding: 10px 16px;
+export const LogoutButton = styled.button`
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+        color: #20bf6b;
     }
 `

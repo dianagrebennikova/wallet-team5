@@ -1,10 +1,11 @@
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import { AuthForm } from './AuthForm/AuthForm'
 import Analytics from './Analytics/Analytics'
 import { useState, useEffect } from 'react'
-import { Header } from './Header/Header'
+import Header from './Header/Header'
+import MyExpenses from '../pages/MyExpenses'
 
-export function AppRoutes() {
+export default function AppRoutes() {
     const [isAuthenticated, setIsAuthenticated] = useState(
         !!localStorage.getItem('authToken')
     )
@@ -39,11 +40,13 @@ export function AppRoutes() {
 
     return (
         <>
-            <Header onLogout={isAuthenticated ? handleLogout : null} />
+            {isAuthenticated && <Header onLogout={handleLogout} />}
 
             <Routes>
                 {isAuthenticated ? (
                     <>
+                        <Route path="/" element={<Navigate to="/expenses" />} />
+                        <Route path="/expenses" element={<MyExpenses />} />
                         <Route path="/analytics" element={<Analytics />} />
                         <Route path="*" element={<Analytics />} />
                     </>
