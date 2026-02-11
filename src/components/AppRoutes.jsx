@@ -40,7 +40,7 @@ export default function AppRoutes() {
 
     return (
         <>
-            <Header onLogout={isAuthenticated ? handleLogout : null} />
+            {isAuthenticated && <Header onLogout={handleLogout} />}
 
             <Routes>
                 {isAuthenticated ? (

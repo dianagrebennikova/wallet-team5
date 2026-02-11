@@ -12,7 +12,10 @@ export default function Header() {
     const navigate = useNavigate()
 
     const handleLogout = () => {
-        navigate('/')
+        localStorage.removeItem('authToken')
+        localStorage.removeItem('userName')
+
+        window.location.replace('/sign-in')
     }
 
     return (
