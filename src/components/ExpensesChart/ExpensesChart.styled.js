@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const ChartContainer = styled.div`
     width: 100%;
-    width: 789px;
+    /* width: 789px; */
+    height: 100%;
     padding: 32px 32px 44px 32px;
     border-radius: 30px;
     box-shadow: 0px 20px 67px -12px rgba(0, 0, 0, 0.13);
