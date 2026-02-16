@@ -58,6 +58,7 @@ export const CalendarColumn = styled.div`
     border-radius: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     background: rgba(255, 255, 255, 1);
+    padding-bottom: 24px;
 
     @media (max-width: 768px) {
         width: 100%;
