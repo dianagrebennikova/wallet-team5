@@ -56,11 +56,15 @@ const MyExpenses = ({ onAddExpense }) => {
         setSubmitted(true)
 
         if (allValid) {
+            // преобразуем дату из ДД.ММ.ГГГГ в М-Д-ГГГГ
+            const [day, month, year] = date.split('.')
+            const formattedDate = `${Number(month)}-${Number(day)}-${year}`
+
             const expenseData = {
-                description,
+                description: description.trim(),
                 category,
-                date,
-                amount: Number(amount),
+                sum: Number(amount),
+                date: formattedDate,
             }
 
             if (onAddExpense) {

@@ -56,7 +56,7 @@ const MyExpensesPage = () => {
                 description: item.description,
                 category: apiToCategory[item.category] || item.category,
                 date: formatDateFromISO(item.date),
-                amount: item.sum,
+                sum: Number(item.sum),
             }))
 
             setExpenses(formattedExpenses)
@@ -77,9 +77,9 @@ const MyExpensesPage = () => {
 
             const apiExpense = {
                 description: newExpense.description,
-                amount: newExpense.amount,
+                sum: Number(newExpense.sum),
                 category: newExpense.category,
-                date: newExpense.date,
+                date: newExpense.date.trim(),
             }
 
             await addTransaction({ token, transaction: apiExpense })
