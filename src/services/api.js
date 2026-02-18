@@ -29,7 +29,7 @@ export async function addTransaction({ token, transaction }) {
         const response = await axios.post(API_URL, transaction, {
             headers: {
                 Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
+                'Content-Type': '',
             },
         })
         return response.data
