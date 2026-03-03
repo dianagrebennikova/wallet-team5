@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 
 export const PageContainer = styled.div`
-    min-height: 100vh;
     background: rgba(244, 245, 246, 1);
     position: relative;
-    padding-bottom: 80px;
     box-sizing: border-box;
 
     @media (max-width: 1366px) {

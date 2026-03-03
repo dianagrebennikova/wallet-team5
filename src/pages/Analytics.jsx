@@ -5,7 +5,6 @@ import Header from '../components/Header/Header'
 function AnalyticsPage() {
     return (
         <>
-            <Header />
             <Analyics />
             <Outlet />
         </>

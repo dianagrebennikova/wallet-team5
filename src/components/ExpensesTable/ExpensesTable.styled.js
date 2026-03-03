@@ -39,9 +39,7 @@ export const TableTitle = styled.h2`
     text-align: left;
 
     @media (max-width: 768px) {
-        font-size: 20px;
-        line-height: 24px;
-        margin: 24px 0 12px 20px;
+        display: none;
     }
 `
 

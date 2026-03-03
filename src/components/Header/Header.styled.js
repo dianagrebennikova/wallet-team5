@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
 export const Wrapper = styled.header`
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
