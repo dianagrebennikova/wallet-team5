@@ -38,70 +38,81 @@ const Calendar = ({ selectedPeriod, onPeriodSelect, onBack }) => {
         today.getFullYear()
     )
 
-    // Получаем отображаемый период: selectedPeriod, если нет временного выбора
-    const hasSelectedPeriod = selectedPeriod?.from && selectedPeriod?.to
-    const { from, to } =
-        hasSelectedPeriod && !tempStart && !tempEnd
-            ? selectedPeriod
-            : { from: null, to: null }
+    // Отслеживаем изменение размера экрана
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768)
+        }
+
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+    // Сбрасываем временный выбор при изменении selectedPeriod с помощью ключа
+    const [instanceKey] = useState(() =>
+        selectedPeriod
+            ? `${selectedPeriod.from}-${selectedPeriod.to}`
+            : 'no-period'
+    )
+
+    const displayFrom =
+        tempStart || tempEnd ? null : (selectedPeriod?.from ?? null)
+    const displayTo = tempStart || tempEnd ? null : (selectedPeriod?.to ?? null)
 
     // Обработчик клика по дате
     const handleDateClick = (day, monthIndex) => {
         if (day === '') return
 
-        const clickedDate = formatDate(day, monthIndex + 1, year)
-        const parsedDate = parseDate(clickedDate)
+        const clickedDateStr = formatDate(day, monthIndex + 1, year)
+        const clicked = parseDate(clickedDateStr)
 
-        // Начинаем новый выбор, если уже есть полный период
-        if (hasSelectedPeriod && !tempStart && !tempEnd) {
-            setTempStart(parsedDate)
-            setTempEnd(null)
-            return
-        }
-
-        // Устанавливаем начало периода
+        // Первый клик (или после сброса)
         if (!tempStart) {
-            setTempStart(parsedDate)
+            setTempStart(clicked)
             setTempEnd(null)
             return
         }
 
-        // Устанавливаем конец периода
-        if (tempStart && !tempEnd) {
-            const startDateObj = new Date(
+        // Второй клик — завершаем диапазон
+        if (!tempEnd) {
+            const startObj = new Date(
                 tempStart.year,
                 tempStart.month - 1,
                 tempStart.day
             )
-            const clickedDateObj = new Date(
-                parsedDate.year,
-                parsedDate.month - 1,
-                parsedDate.day
+            const clickedObj = new Date(
+                clicked.year,
+                clicked.month - 1,
+                clicked.day
             )
 
-            const newStart =
-                clickedDateObj < startDateObj ? parsedDate : tempStart
-            const newEnd =
-                clickedDateObj < startDateObj ? tempStart : parsedDate
+            const [newStart, newEnd] =
+                startObj <= clickedObj
+                    ? [tempStart, clicked]
+                    : [clicked, tempStart]
 
             setTempStart(newStart)
             setTempEnd(newEnd)
 
-            // Авто-применение на десктопе
+            // Автоприменение на десктопе
             if (!isMobile) {
-                const newPeriod = {
+                onPeriodSelect({
                     from: formatDate(
                         newStart.day,
                         newStart.month,
                         newStart.year
                     ),
                     to: formatDate(newEnd.day, newEnd.month, newEnd.year),
-                }
-                onPeriodSelect(newPeriod)
+                })
                 setTempStart(null)
                 setTempEnd(null)
             }
+            return
         }
+
+        // Если уже был полный временный период — начинаем заново
+        setTempStart(clicked)
+        setTempEnd(null)
     }
 
     // Кнопка "Выбрать период" для мобильных
@@ -118,11 +129,12 @@ const Calendar = ({ selectedPeriod, onPeriodSelect, onBack }) => {
     }
 
     return (
-        <S.CalendarContainer>
+        <S.CalendarContainer key={instanceKey}>
             <S.CalendarHeader>
                 <S.CalendarTitle>Период</S.CalendarTitle>
 
                 {/* Мобильный хедер с кнопкой "назад" */}
+
                 <S.CalendarTitleMobile>
                     <S.Link
                         href="/"
@@ -184,8 +196,8 @@ const Calendar = ({ selectedPeriod, onPeriodSelect, onBack }) => {
                                         monthIndex,
                                         year,
                                         {
-                                            from,
-                                            to,
+                                            from: displayFrom,
+                                            to: displayTo,
                                             tempStart,
                                             tempEnd,
                                         }

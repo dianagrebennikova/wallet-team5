@@ -36,16 +36,20 @@ export const CalendarHeader = styled.div`
     flex-shrink: 0;
 
     @media (max-width: 768px) {
-        height: 127px;
+        height: 103px;
         padding: 0 16px 0 16px;
     }
 `
+
+// export const CalendarHeaderBorderContainer = styled.div`
+//     border-bottom: 0.5px solid rgba(153, 153, 153, 1);
+// `
 
 export const CalendarTitle = styled.h2`
     font-family: Montserrat;
     font-weight: 700;
     font-size: 24px;
-    line-height: 100%;
+    line-height: 29px;
     letter-spacing: 0px;
     text-align: left;
     color: ${COLORS.black};
@@ -74,7 +78,7 @@ export const Link = styled.a`
     color: ${COLORS.gray};
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 `
 
 export const LinkIconMob = styled.span`
@@ -118,6 +122,10 @@ export const WeekdaysContainer = styled.div`
     grid-template-rows: 27px;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(7, 44px);
+    }
 `
 
 export const Weekday = styled.div`
@@ -178,6 +186,10 @@ export const MonthDaysGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(7, 40px);
     gap: 6px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(7, 44px);
+    }
 `
 
 export const MonthDay = styled.div`

@@ -31,8 +31,26 @@ export const AnalyticsContainer = styled.div`
         }};
         padding-bottom: 0px;
         height: 700px;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: ${(props) => {
+            switch (props.$isCalendarView) {
+                case 'calendar':
+                    return '0'
+                case 'chart':
+                    return '16px'
+                default:
+                    return '16px'
+            }
+        }};
+        padding-right: ${(props) => {
+            switch (props.$isCalendarView) {
+                case 'calendar':
+                    return '0'
+                case 'chart':
+                    return '16px'
+                default:
+                    return '16px'
+            }
+        }};
         background-color: rgba(255, 255, 255, 1);
     }
 `
