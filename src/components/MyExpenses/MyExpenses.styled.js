@@ -28,8 +28,6 @@ export const ContentWrapper = styled.div`
         padding-top: 24px;
         padding-bottom: 0px;
         height: 700px;
-        padding-left: 16px;
-        padding-right: 16px;
         background-color: rgba(255, 255, 255, 1);
         max-width: 100%;
         margin: 0;
@@ -39,6 +37,9 @@ export const ContentWrapper = styled.div`
 export const PageTitleWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    @media (max-width: 768px) {
+        padding: 0 16px;
+    }
 `
 
 export const PageTitle = styled.h1`
@@ -97,9 +98,8 @@ export const ColumnsLayout = styled.div`
     }
 
     @media (max-width: 768px) {
-        margin-top: ${(props) => (props.$isCalendarView ? '0px' : '24px')};
+        margin-top: 24px;
 
-        /* На очень маленьких экранах убираем центрирование */
         & > * {
             margin-left: 0;
             margin-right: 0;
@@ -114,14 +114,6 @@ export const TableWrapper = styled.div`
 
     @media (max-width: 1160px) {
         width: 100%;
-        max-width: 789px;
-        min-height: 618px;
-    }
-
-    @media (max-width: 768px) {
-        width: 100%;
-        min-height: 500px;
-        padding: 0;
     }
 `
 

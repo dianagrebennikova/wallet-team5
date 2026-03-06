@@ -19,7 +19,8 @@ export const TableContainer = styled.div`
     overflow: hidden;
 
     @media (max-width: 768px) {
-        border-radius: 20px;
+        border-radius: 0px;
+        box-shadow: none;
     }
 `
 
@@ -72,12 +73,18 @@ export const HeaderCell = styled.div`
     text-align: left;
 
     @media (max-width: 768px) {
+        font-size: 10px;
+        line-height: 12px;
         &:nth-child(3) {
             text-align: right;
         }
 
         &:nth-child(4) {
             text-align: right;
+        }
+
+        &:nth-child(5) {
+            display: none;
         }
     }
 `
@@ -144,6 +151,10 @@ export const Cell = styled.div`
 
         &:nth-child(4) {
             text-align: right;
+        }
+
+        &:nth-child(5) {
+            display: none;
         }
     }
 `
