@@ -37,7 +37,7 @@ export const CalendarHeader = styled.div`
 
     @media (max-width: 768px) {
         height: 127px;
-        padding: 24px 16px 0 16px;
+        padding: 0 16px 0 16px;
     }
 `
 
@@ -222,7 +222,9 @@ export const MonthDay = styled.div`
     // При наведении
     // Даты внутри выбранного периода
     // Временный период при выборе
-    &:not(.empty):not(.in-period):not(.period-boundary):not(.temp-boundary):not(.in-temp-period):hover,
+    &:not(.empty):not(.in-period):not(.period-boundary):not(.temp-boundary):not(
+            .in-temp-period
+        ):hover,
     &.in-period,
     &.in-temp-period {
         background: ${COLORS.primaryLight};

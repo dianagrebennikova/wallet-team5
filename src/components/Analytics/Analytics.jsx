@@ -32,7 +32,7 @@ const Analytics = () => {
                 <S.AnalyticsTitle>Анализ расходов</S.AnalyticsTitle> // Показываем заголовок ТОЛЬКО когда view === 'chart'
             )}
 
-            <S.ColumnsLayout>
+            <S.ColumnsLayout $isCalendarView={view === 'calendar'}>
                 <S.CalendarColumn
                     $visibleOnDesktop={true}
                     $isVisible={view === 'calendar'}
