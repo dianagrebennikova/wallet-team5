@@ -22,7 +22,7 @@ export const AnalyticsContainer = styled.div`
         padding-top: ${(props) => {
             switch (props.$isCalendarView) {
                 case 'calendar':
-                    return '24px'
+                    return '0'
                 case 'chart':
                     return '24px'
                 default:

@@ -22,6 +22,11 @@ export const CalendarContainer = styled.div`
     @media (max-width: 1024px) {
         width: 375px;
     }
+
+    @media (max-width: 768px) {
+        height: 100vh; /* На мобильных занимаем всю высоту экрана */
+        overflow: hidden; /* Предотвращаем прокрутку всего контейнера */
+    }
 `
 
 // Header календаря
@@ -36,14 +41,17 @@ export const CalendarHeader = styled.div`
     flex-shrink: 0;
 
     @media (max-width: 768px) {
-        height: 103px;
-        padding: 0 16px 0 16px;
+        height: auto; /* Автовысота на мобильных */
+        padding: 24px 16px 0 16px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: ${COLORS.white};
+        border-bottom: 0.5px solid ${COLORS.gray};
     }
 `
-
-// export const CalendarHeaderBorderContainer = styled.div`
-//     border-bottom: 0.5px solid rgba(153, 153, 153, 1);
-// `
 
 export const CalendarTitle = styled.h2`
     font-family: Montserrat;
@@ -125,6 +133,7 @@ export const WeekdaysContainer = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(7, 44px);
+        padding-bottom: 8px;
     }
 `
 
@@ -141,6 +150,11 @@ export const Weekday = styled.div`
 export const CalendarScrollable = styled.div`
     flex: 1;
     overflow-y: auto;
+
+    @media (max-width: 768px) {
+        height: calc(100vh - 140px - 87px);
+        padding-bottom: 0;
+    }
 
     // Стилизация скроллбара
     &::-webkit-scrollbar {
@@ -168,6 +182,14 @@ export const MonthContainer = styled.div`
 
     @media screen and (max-width: 1024px) {
         padding: 24px 16px 0 16px;
+    }
+
+    &:last-child {
+        padding-bottom: 24px;
+
+        @media (max-width: 768px) {
+            padding-bottom: 32px;
+        }
     }
 `
 
