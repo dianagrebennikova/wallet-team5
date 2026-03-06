@@ -157,7 +157,6 @@ const Calendar = ({ selectedPeriod, onPeriodSelect, onBack }) => {
                             </S.MonthTitle>
                             <S.MonthDaysGrid>
                                 {monthDays.map((day, i) => {
-
                                     // Пустые ячейки
                                     if (day.isEmpty) {
                                         return (
