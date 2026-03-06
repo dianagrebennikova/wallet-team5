@@ -20,11 +20,11 @@ export const Title = styled.h2`
 export const Label = styled.label`
     display: block;
     margin-top: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     font-family: Montserrat;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
     color: rgba(0, 0, 0, 1);
 
     &:first-of-type {
@@ -33,10 +33,6 @@ export const Label = styled.label`
 
     @media (max-width: 768px) {
         margin-top: 24px;
-        margin-bottom: 16px;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 20px;
     }
 `
 
@@ -126,7 +122,7 @@ export const SubmitButton = styled.button`
     line-height: 15px;
     border: none;
     cursor: pointer;
-    margin-top: 32px;
+    margin-top: 24px;
     background-color: ${({ $allValid, $submitted }) =>
         $submitted && !$allValid
             ? 'rgba(153, 153, 153, 1)'
