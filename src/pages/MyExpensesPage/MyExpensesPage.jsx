@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import React, { useState, useEffect, useCallback } from 'react'
 import * as S from './MyExpensesPage.styled'
 import ExpensesTable from '../../components/ExpensesTable/ExpensesTable'
-import MyExpenses from '../MyExpenses'
+import ExpensesForm from '../../components/ExpensesForm/ExpensesForm'
 import {
     fetchTransactions,
     addTransaction,
@@ -136,7 +136,7 @@ const MyExpensesPage = ({ showForm }) => {
                 {showForm && (
                     <S.DesktopOnly>
                         <S.FormWrapper>
-                            <MyExpenses onAddExpense={handleAddExpense} />
+                            <ExpensesForm onAddExpense={handleAddExpense} />
                         </S.FormWrapper>
                     </S.DesktopOnly>
                 )}
@@ -151,7 +151,7 @@ const MyExpensesPage = ({ showForm }) => {
                         </S.MobileBackButton>
 
                         <S.FormWrapper>
-                            <MyExpenses onAddExpense={handleAddExpense} />
+                            <ExpensesForm onAddExpense={handleAddExpense} />
                         </S.FormWrapper>
                     </S.MobileOnly>
                 )}

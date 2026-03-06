@@ -9,7 +9,7 @@ import {
     SubmitButton,
     ErrorStar,
     MobileSubmitField,
-} from './MyExpenses.styled'
+} from './ExpensesForm.styled'
 
 const categories = [
     { name: 'food', label: 'Еда', icon: '/icon/food_icon.svg' },
@@ -42,7 +42,7 @@ const isValidDate = (value) => {
     return date.getDate() === day && date.getMonth() === month - 1
 }
 
-const MyExpenses = ({ onAddExpense }) => {
+const ExpensesForm = ({ onAddExpense }) => {
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState('')
     const [date, setDate] = useState('')
@@ -179,4 +179,4 @@ const MyExpenses = ({ onAddExpense }) => {
     )
 }
 
-export default MyExpenses
+export default ExpensesForm

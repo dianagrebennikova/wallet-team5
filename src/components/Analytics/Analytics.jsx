@@ -8,7 +8,7 @@ const Analytics = () => {
         from: '01.01.2026',
         to: '16.01.2026',
     })
-    
+
     const [view, setView] = useState('chart')
 
     // Вынесена повторяющаяся логика в одну функцию (DRY)
