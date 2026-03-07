@@ -1,7 +1,7 @@
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import { AuthForm } from './AuthForm/AuthForm'
 import Analytics from '../pages/Analytics'
-import MyExpensesPage from '../pages/MyExpensesPage/MyExpensesPage'
+import MyExpensesPage from './MyExpenses/MyExpenses'
 import { useState, useEffect } from 'react'
 import Header from './Header/Header'
 
@@ -9,6 +9,7 @@ export default function AppRoutes() {
     const [isAuthenticated, setIsAuthenticated] = useState(
         !!localStorage.getItem('authToken')
     )
+
     const navigate = useNavigate()
 
     useEffect(() => {

@@ -13,7 +13,7 @@ export const AnalyticsContainer = styled.div`
     flex-direction: column;
     padding-right: calc(50% - 600px);
     padding-left: calc(50% - 600px);
-    padding-top: 100px;
+    padding-top: 32px;
     padding-bottom: 80px;
     background-color: ${COLORS.bgGray};
     box-sizing: border-box;
@@ -22,26 +22,36 @@ export const AnalyticsContainer = styled.div`
         padding-top: ${(props) => {
             switch (props.$isCalendarView) {
                 case 'calendar':
-                    return '32px'
+                    return '0'
                 case 'chart':
-                    return '100px'
+                    return '24px'
                 default:
                     return '100px'
             }
         }};
-    }
-
-    @media (max-width: 430px) {
-        padding-top: ${(props) => {
+        padding-bottom: 0px;
+        height: 700px;
+        padding-left: ${(props) => {
             switch (props.$isCalendarView) {
                 case 'calendar':
-                    return '40px'
+                    return '0'
                 case 'chart':
-                    return '88px'
+                    return '16px'
                 default:
-                    return '100px'
+                    return '16px'
             }
         }};
+        padding-right: ${(props) => {
+            switch (props.$isCalendarView) {
+                case 'calendar':
+                    return '0'
+                case 'chart':
+                    return '16px'
+                default:
+                    return '16px'
+            }
+        }};
+        background-color: rgba(255, 255, 255, 1);
     }
 `
 
@@ -55,7 +65,7 @@ export const AnalyticsTitle = styled.h1`
     letter-spacing: 0px;
     text-align: left;
 
-    @media (max-width: 430px) {
+    @media (max-width: 768px) {
         font-size: 24px;
         line-height: 100%;
         letter-spacing: 0px;
@@ -72,8 +82,8 @@ export const ColumnsLayout = styled.div`
         align-items: stretch;
     }
 
-    @media (max-width: 430px) {
-        margin-top: 24px;
+    @media (max-width: 768px) {
+        margin-top: ${(props) => (props.$isCalendarView ? '0px' : '24px')};
     }
 `
 
@@ -149,6 +159,7 @@ export const CalendarButton = styled.button`
         line-height: 15px;
         letter-spacing: 0px;
         text-align: center;
+        border: none;
 
         &:active {
             background: ${COLORS.primaryDark};

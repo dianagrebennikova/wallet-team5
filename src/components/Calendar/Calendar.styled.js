@@ -22,6 +22,11 @@ export const CalendarContainer = styled.div`
     @media (max-width: 1024px) {
         width: 375px;
     }
+
+    @media (max-width: 768px) {
+        height: 100vh; /* На мобильных занимаем всю высоту экрана */
+        overflow: hidden; /* Предотвращаем прокрутку всего контейнера */
+    }
 `
 
 // Header календаря
@@ -36,8 +41,15 @@ export const CalendarHeader = styled.div`
     flex-shrink: 0;
 
     @media (max-width: 768px) {
-        height: 127px;
+        height: auto; /* Автовысота на мобильных */
         padding: 24px 16px 0 16px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: ${COLORS.white};
+        border-bottom: 0.5px solid ${COLORS.gray};
     }
 `
 
@@ -45,7 +57,7 @@ export const CalendarTitle = styled.h2`
     font-family: Montserrat;
     font-weight: 700;
     font-size: 24px;
-    line-height: 100%;
+    line-height: 29px;
     letter-spacing: 0px;
     text-align: left;
     color: ${COLORS.black};
@@ -74,7 +86,7 @@ export const Link = styled.a`
     color: ${COLORS.gray};
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 `
 
 export const LinkIconMob = styled.span`
@@ -118,6 +130,11 @@ export const WeekdaysContainer = styled.div`
     grid-template-rows: 27px;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(7, 44px);
+        padding-bottom: 8px;
+    }
 `
 
 export const Weekday = styled.div`
@@ -133,6 +150,11 @@ export const Weekday = styled.div`
 export const CalendarScrollable = styled.div`
     flex: 1;
     overflow-y: auto;
+
+    @media (max-width: 768px) {
+        height: calc(100vh - 140px - 87px);
+        padding-bottom: 0;
+    }
 
     // Стилизация скроллбара
     &::-webkit-scrollbar {
@@ -161,6 +183,14 @@ export const MonthContainer = styled.div`
     @media screen and (max-width: 1024px) {
         padding: 24px 16px 0 16px;
     }
+
+    &:last-child {
+        padding-bottom: 24px;
+
+        @media (max-width: 768px) {
+            padding-bottom: 32px;
+        }
+    }
 `
 
 export const MonthTitle = styled.h3`
@@ -178,6 +208,10 @@ export const MonthDaysGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(7, 40px);
     gap: 6px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(7, 44px);
+    }
 `
 
 export const MonthDay = styled.div`
@@ -222,7 +256,9 @@ export const MonthDay = styled.div`
     // При наведении
     // Даты внутри выбранного периода
     // Временный период при выборе
-    &:not(.empty):not(.in-period):not(.period-boundary):not(.temp-boundary):not(.in-temp-period):hover,
+    &:not(.empty):not(.in-period):not(.period-boundary):not(.temp-boundary):not(
+            .in-temp-period
+        ):hover,
     &.in-period,
     &.in-temp-period {
         background: ${COLORS.primaryLight};

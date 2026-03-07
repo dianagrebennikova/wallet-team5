@@ -1,5 +1,13 @@
 import styled from 'styled-components'
 
+const COLORS = {
+    bgGray: 'rgba(244, 245, 246, 1)',
+    white: 'rgba(255, 255, 255, 1)',
+    black: 'rgba(0, 0, 0, 1)',
+    primary: 'rgba(115, 52, 234, 1)',
+    primaryDark: 'rgb(81, 0, 231)',
+}
+
 export const TableContainer = styled.div`
     width: 100%;
     height: 100%;
@@ -11,8 +19,14 @@ export const TableContainer = styled.div`
     overflow: hidden;
 
     @media (max-width: 768px) {
-        border-radius: 20px;
+        border-radius: 0px;
+        box-shadow: none;
     }
+`
+
+export const TableHeaderBorderContainer = styled.div`
+    border-bottom: 0.5px solid rgba(153, 153, 153, 1);
+    margin-bottom: 8px;
 `
 
 export const TableTitle = styled.h2`
@@ -21,34 +35,32 @@ export const TableTitle = styled.h2`
     font-size: 24px;
     line-height: 29px;
     color: rgba(0, 0, 0, 1);
-    margin: 32px 0 16px 32px;
+    margin: 32px 0 32px 32px;
     padding: 0;
     text-align: left;
 
     @media (max-width: 768px) {
-        font-size: 20px;
-        line-height: 24px;
-        margin: 24px 0 12px 20px;
+        display: none;
     }
 `
 
 export const TableHeader = styled.div`
     padding: 0 32px;
-    margin-bottom: 12px;
 
     @media (max-width: 768px) {
-        padding: 0 20px;
+        padding: 0 16px;
     }
 `
 
 export const HeaderRow = styled.div`
     display: grid;
-    grid-template-columns: 1.8fr 1fr 0.9fr 0.9fr 0.7fr;
-    border-bottom: 0.5px solid rgba(153, 153, 153, 1);
-    padding-bottom: 8px;
+    grid-template-columns: 141fr 141fr 142fr 158fr 12fr;
+    gap: 32px;
+    padding-bottom: 6px;
 
     @media (max-width: 768px) {
-        grid-template-columns: 1.6fr 1fr 0.9fr 0.9fr 0.6fr;
+        grid-template-columns: 74fr 74fr 73fr 74fr;
+        gap: 16px;
     }
 `
 
@@ -60,14 +72,20 @@ export const HeaderCell = styled.div`
     color: rgba(153, 153, 153, 1);
     text-align: left;
 
-    &:nth-child(4) {
-        text-align: right;
-        padding-right: 24px;
-    }
-    
-    &:last-child {
-        text-align: right; 
-        padding-right: 8px;
+    @media (max-width: 768px) {
+        font-size: 10px;
+        line-height: 12px;
+        &:nth-child(3) {
+            text-align: right;
+        }
+
+        &:nth-child(4) {
+            text-align: right;
+        }
+
+        &:nth-child(5) {
+            display: none;
+        }
     }
 `
 
@@ -95,63 +113,54 @@ export const TableBody = styled.div`
     }
 
     @media (max-width: 768px) {
-        padding: 0 20px 24px 20px;
+        padding: 0;
     }
 `
 
 export const Row = styled.div`
     display: grid;
-    grid-template-columns: 1.8fr 1fr 0.9fr 0.9fr 0.7fr;
-    padding: 12px 0;
-    border-bottom: 0.5px solid rgba(217, 217, 217, 0.3);
+    grid-template-columns: 141fr 141fr 142fr 158fr 12fr;
+    gap: 32px;
     align-items: center;
-
-    &:last-child {
-        border-bottom: none;
-    }
+    margin-bottom: 14px;
+    background-color: ${(props) =>
+        props.$isSelected ? 'rgba(241, 235, 253, 1)' : 'transparent'};
 
     @media (max-width: 768px) {
-        grid-template-columns: 1.6fr 1fr 0.9fr 0.9fr 0.6fr;
-        padding: 10px 0;
+        margin-bottom: 0px;
+        height: 24px;
+        grid-template-columns: 74fr 74fr 73fr 74fr;
+        gap: 16px;
+        padding: 0 16px;
     }
 `
 
 export const Cell = styled.div`
     font-family: Montserrat;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    color: rgba(0, 0, 0, 1);
+    font-size: 12px;
+    line-height: 15px;
+    color: ${(props) =>
+        props.$isSelected ? 'rgba(115, 52, 234, 1)' : 'rgba(0, 0, 0, 1)'};
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-right: 16px;
-
-    &:nth-child(4) {
-        text-align: right;
-        font-weight: 400;
-        padding-right: 24px;
-    }
-    
-    &:last-child {
-        text-align: right; 
-        padding-right: 8px; 
-        padding-left: 0;  
-    }
 
     @media (max-width: 768px) {
-        font-size: 12px;
+        font-size: 10px;
         line-height: 15px;
-        padding-right: 12px;
+
+        &:nth-child(3) {
+            text-align: right;
+        }
 
         &:nth-child(4) {
-            padding-right: 16px;
+            text-align: right;
         }
-        
-        &:last-child {
-            padding-right: 4px; 
-            padding-left: 0;
+
+        &:nth-child(5) {
+            display: none;
         }
     }
 `
@@ -160,17 +169,16 @@ export const DeleteButton = styled.button`
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px;
     transition: all 0.2s;
-    margin-left: auto; 
+    margin-left: auto;
 
     svg {
-        width: 18px;
-        height: 18px;
+        width: 12px;
+        height: 12px;
         color: #999;
         transition: color 0.2s;
     }
@@ -184,12 +192,7 @@ export const DeleteButton = styled.button`
     }
 
     @media (max-width: 768px) {
-        padding: 4px;
-        
-        svg {
-            width: 16px;
-            height: 16px;
-        }
+        display: none;
     }
 `
 
@@ -200,4 +203,58 @@ export const EmptyMessage = styled.div`
     height: 200px;
     color: #999;
     font-size: 14px;
+`
+// --- Контейнер с Кнопкой "Выбрать другой период" ---
+export const DelMobButton = styled.button`
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block;
+        width: 343px;
+        height: 39px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        background: ${COLORS.primary};
+        gap: 12px;
+        padding: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: ${COLORS.white};
+        font-family: Montserrat;
+        font-style: SemiBold;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 15px;
+        letter-spacing: 0px;
+        text-align: center;
+        border: none;
+
+        &:active {
+            background: ${COLORS.primaryDark};
+        }
+    }
+`
+
+// --- Кнопка "Выбрать другой период" ---
+export const DelMobButtonContainer = styled.div`
+    display: none;
+
+    @media (max-width: 768px) {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 87px;
+        justify-content: center;
+        align-items: center;
+        background: #ffffff;
+        box-shadow: 0px -20px 67px -12px rgba(0, 0, 0, 0.13);
+        z-index: 1000;
+        padding: 0;
+        margin: 0;
+    }
 `

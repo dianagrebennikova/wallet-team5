@@ -8,7 +8,7 @@ const Analytics = () => {
         from: '01.01.2026',
         to: '16.01.2026',
     })
-    
+
     const [view, setView] = useState('chart')
 
     // Вынесена повторяющаяся логика в одну функцию (DRY)
@@ -32,7 +32,7 @@ const Analytics = () => {
                 <S.AnalyticsTitle>Анализ расходов</S.AnalyticsTitle> // Показываем заголовок ТОЛЬКО когда view === 'chart'
             )}
 
-            <S.ColumnsLayout>
+            <S.ColumnsLayout $isCalendarView={view === 'calendar'}>
                 <S.CalendarColumn
                     $visibleOnDesktop={true}
                     $isVisible={view === 'calendar'}
